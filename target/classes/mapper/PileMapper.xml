@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.PileMapper" >
+  <resultMap id="BaseResultMap" type="po.Pile" >
+    <id column="pile_id" property="pileId" jdbcType="CHAR" />
+    <result column="pile_password" property="pilePassword" jdbcType="CHAR" />
+    <result column="pile_longitude" property="pileLongitude" jdbcType="DOUBLE" />
+    <result column="pile_latitude" property="pileLatitude" jdbcType="DOUBLE" />
+    <result column="pile_areaid" property="pileAreaid" jdbcType="CHAR" />
+    <result column="pile_address" property="pileAddress" jdbcType="CHAR" />
+    <result column="pile_staffid" property="pileStaffid" jdbcType="CHAR" />
+    <result column="pile_staffname" property="pileStaffname" jdbcType="CHAR" />
+    <result column="pile_state" property="pileState" jdbcType="TINYINT" />
+    <result column="pile_use_state" property="pileUseState" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    pile_id, pile_password, pile_longitude, pile_latitude, pile_areaid, pile_address, 
+    pile_staffid, pile_staffname, pile_state, pile_use_state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="po.PileExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pile
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from pile
+    where pile_id = #{pileId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from pile
+    where pile_id = #{pileId,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="po.PileExample" >
+    delete from pile
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="po.Pile" >
+    insert into pile (pile_id, pile_password, pile_longitude, 
+      pile_latitude, pile_areaid, pile_address, 
+      pile_staffid, pile_staffname, pile_state, 
+      pile_use_state)
+    values (#{pileId,jdbcType=CHAR}, #{pilePassword,jdbcType=CHAR}, #{pileLongitude,jdbcType=DOUBLE}, 
+      #{pileLatitude,jdbcType=DOUBLE}, #{pileAreaid,jdbcType=CHAR}, #{pileAddress,jdbcType=CHAR}, 
+      #{pileStaffid,jdbcType=CHAR}, #{pileStaffname,jdbcType=CHAR}, #{pileState,jdbcType=TINYINT}, 
+      #{pileUseState,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="po.Pile" >
+    insert into pile
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pileId != null" >
+        pile_id,
+      </if>
+      <if test="pilePassword != null" >
+        pile_password,
+      </if>
+      <if test="pileLongitude != null" >
+        pile_longitude,
+      </if>
+      <if test="pileLatitude != null" >
+        pile_latitude,
+      </if>
+      <if test="pileAreaid != null" >
+        pile_areaid,
+      </if>
+      <if test="pileAddress != null" >
+        pile_address,
+      </if>
+      <if test="pileStaffid != null" >
+        pile_staffid,
+      </if>
+      <if test="pileStaffname != null" >
+        pile_staffname,
+      </if>
+      <if test="pileState != null" >
+        pile_state,
+      </if>
+      <if test="pileUseState != null" >
+        pile_use_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pileId != null" >
+        #{pileId,jdbcType=CHAR},
+      </if>
+      <if test="pilePassword != null" >
+        #{pilePassword,jdbcType=CHAR},
+      </if>
+      <if test="pileLongitude != null" >
+        #{pileLongitude,jdbcType=DOUBLE},
+      </if>
+      <if test="pileLatitude != null" >
+        #{pileLatitude,jdbcType=DOUBLE},
+      </if>
+      <if test="pileAreaid != null" >
+        #{pileAreaid,jdbcType=CHAR},
+      </if>
+      <if test="pileAddress != null" >
+        #{pileAddress,jdbcType=CHAR},
+      </if>
+      <if test="pileStaffid != null" >
+        #{pileStaffid,jdbcType=CHAR},
+      </if>
+      <if test="pileStaffname != null" >
+        #{pileStaffname,jdbcType=CHAR},
+      </if>
+      <if test="pileState != null" >
+        #{pileState,jdbcType=TINYINT},
+      </if>
+      <if test="pileUseState != null" >
+        #{pileUseState,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="po.PileExample" resultType="java.lang.Integer" >
+    select count(*) from pile
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update pile
+    <set >
+      <if test="record.pileId != null" >
+        pile_id = #{record.pileId,jdbcType=CHAR},
+      </if>
+      <if test="record.pilePassword != null" >
+        pile_password = #{record.pilePassword,jdbcType=CHAR},
+      </if>
+      <if test="record.pileLongitude != null" >
+        pile_longitude = #{record.pileLongitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.pileLatitude != null" >
+        pile_latitude = #{record.pileLatitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.pileAreaid != null" >
+        pile_areaid = #{record.pileAreaid,jdbcType=CHAR},
+      </if>
+      <if test="record.pileAddress != null" >
+        pile_address = #{record.pileAddress,jdbcType=CHAR},
+      </if>
+      <if test="record.pileStaffid != null" >
+        pile_staffid = #{record.pileStaffid,jdbcType=CHAR},
+      </if>
+      <if test="record.pileStaffname != null" >
+        pile_staffname = #{record.pileStaffname,jdbcType=CHAR},
+      </if>
+      <if test="record.pileState != null" >
+        pile_state = #{record.pileState,jdbcType=TINYINT},
+      </if>
+      <if test="record.pileUseState != null" >
+        pile_use_state = #{record.pileUseState,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update pile
+    set pile_id = #{record.pileId,jdbcType=CHAR},
+      pile_password = #{record.pilePassword,jdbcType=CHAR},
+      pile_longitude = #{record.pileLongitude,jdbcType=DOUBLE},
+      pile_latitude = #{record.pileLatitude,jdbcType=DOUBLE},
+      pile_areaid = #{record.pileAreaid,jdbcType=CHAR},
+      pile_address = #{record.pileAddress,jdbcType=CHAR},
+      pile_staffid = #{record.pileStaffid,jdbcType=CHAR},
+      pile_staffname = #{record.pileStaffname,jdbcType=CHAR},
+      pile_state = #{record.pileState,jdbcType=TINYINT},
+      pile_use_state = #{record.pileUseState,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="po.Pile" >
+    update pile
+    <set >
+      <if test="pilePassword != null" >
+        pile_password = #{pilePassword,jdbcType=CHAR},
+      </if>
+      <if test="pileLongitude != null" >
+        pile_longitude = #{pileLongitude,jdbcType=DOUBLE},
+      </if>
+      <if test="pileLatitude != null" >
+        pile_latitude = #{pileLatitude,jdbcType=DOUBLE},
+      </if>
+      <if test="pileAreaid != null" >
+        pile_areaid = #{pileAreaid,jdbcType=CHAR},
+      </if>
+      <if test="pileAddress != null" >
+        pile_address = #{pileAddress,jdbcType=CHAR},
+      </if>
+      <if test="pileStaffid != null" >
+        pile_staffid = #{pileStaffid,jdbcType=CHAR},
+      </if>
+      <if test="pileStaffname != null" >
+        pile_staffname = #{pileStaffname,jdbcType=CHAR},
+      </if>
+      <if test="pileState != null" >
+        pile_state = #{pileState,jdbcType=TINYINT},
+      </if>
+      <if test="pileUseState != null" >
+        pile_use_state = #{pileUseState,jdbcType=TINYINT},
+      </if>
+    </set>
+    where pile_id = #{pileId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="po.Pile" >
+    update pile
+    set pile_password = #{pilePassword,jdbcType=CHAR},
+      pile_longitude = #{pileLongitude,jdbcType=DOUBLE},
+      pile_latitude = #{pileLatitude,jdbcType=DOUBLE},
+      pile_areaid = #{pileAreaid,jdbcType=CHAR},
+      pile_address = #{pileAddress,jdbcType=CHAR},
+      pile_staffid = #{pileStaffid,jdbcType=CHAR},
+      pile_staffname = #{pileStaffname,jdbcType=CHAR},
+      pile_state = #{pileState,jdbcType=TINYINT},
+      pile_use_state = #{pileUseState,jdbcType=TINYINT}
+    where pile_id = #{pileId,jdbcType=CHAR}
+  </update>
+</mapper>

@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.OrderMapper" >
+  <resultMap id="BaseResultMap" type="po.Order" >
+    <id column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="pile_id" property="pileId" jdbcType="CHAR" />
+    <result column="order_phone" property="orderPhone" jdbcType="CHAR" />
+    <result column="order_start" property="orderStart" jdbcType="TIMESTAMP" />
+    <result column="order_end" property="orderEnd" jdbcType="TIMESTAMP" />
+    <result column="order_money" property="orderMoney" jdbcType="DECIMAL" />
+    <result column="order_time" property="orderTime" jdbcType="INTEGER" />
+    <result column="order_status" property="orderStatus" jdbcType="CHAR" />
+    <result column="order_method" property="orderMethod" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    order_id, pile_id, order_phone, order_start, order_end, order_money, order_time, 
+    order_status, order_method
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="po.OrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dingdan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dingdan
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dingdan
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="po.OrderExample" >
+    delete from dingdan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="po.Order" >
+    insert into dingdan (order_id, pile_id, order_phone, 
+      order_start, order_end, order_money, 
+      order_time, order_status, order_method
+      )
+    values (#{orderId,jdbcType=INTEGER}, #{pileId,jdbcType=CHAR}, #{orderPhone,jdbcType=CHAR}, 
+      #{orderStart,jdbcType=TIMESTAMP}, #{orderEnd,jdbcType=TIMESTAMP}, #{orderMoney,jdbcType=DECIMAL}, 
+      #{orderTime,jdbcType=INTEGER}, #{orderStatus,jdbcType=CHAR}, #{orderMethod,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="po.Order" >
+    insert into dingdan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="pileId != null" >
+        pile_id,
+      </if>
+      <if test="orderPhone != null" >
+        order_phone,
+      </if>
+      <if test="orderStart != null" >
+        order_start,
+      </if>
+      <if test="orderEnd != null" >
+        order_end,
+      </if>
+      <if test="orderMoney != null" >
+        order_money,
+      </if>
+      <if test="orderTime != null" >
+        order_time,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="orderMethod != null" >
+        order_method,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="pileId != null" >
+        #{pileId,jdbcType=CHAR},
+      </if>
+      <if test="orderPhone != null" >
+        #{orderPhone,jdbcType=CHAR},
+      </if>
+      <if test="orderStart != null" >
+        #{orderStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderEnd != null" >
+        #{orderEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderMoney != null" >
+        #{orderMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=CHAR},
+      </if>
+      <if test="orderMethod != null" >
+        #{orderMethod,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="po.OrderExample" resultType="java.lang.Integer" >
+    select count(*) from dingdan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dingdan
+    <set >
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pileId != null" >
+        pile_id = #{record.pileId,jdbcType=CHAR},
+      </if>
+      <if test="record.orderPhone != null" >
+        order_phone = #{record.orderPhone,jdbcType=CHAR},
+      </if>
+      <if test="record.orderStart != null" >
+        order_start = #{record.orderStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderEnd != null" >
+        order_end = #{record.orderEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderMoney != null" >
+        order_money = #{record.orderMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.orderTime != null" >
+        order_time = #{record.orderTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderStatus != null" >
+        order_status = #{record.orderStatus,jdbcType=CHAR},
+      </if>
+      <if test="record.orderMethod != null" >
+        order_method = #{record.orderMethod,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dingdan
+    set order_id = #{record.orderId,jdbcType=INTEGER},
+      pile_id = #{record.pileId,jdbcType=CHAR},
+      order_phone = #{record.orderPhone,jdbcType=CHAR},
+      order_start = #{record.orderStart,jdbcType=TIMESTAMP},
+      order_end = #{record.orderEnd,jdbcType=TIMESTAMP},
+      order_money = #{record.orderMoney,jdbcType=DECIMAL},
+      order_time = #{record.orderTime,jdbcType=INTEGER},
+      order_status = #{record.orderStatus,jdbcType=CHAR},
+      order_method = #{record.orderMethod,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select id="getOrderMoney" resultType="po.Order">
+    select d.pile_id as pileId,sum(d.order_money) as orderMoney from dingdan d group by d.pile_id;
+  </select>
+  <select id="getuser" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from dingdan
+    where order_phone = #{orderPhone,jdbcType=CHAR}
+  </select>
+  <select id="getpile" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from dingdan
+    where pile_id = #{pileId,jdbcType=CHAR}
+  </select>
+
+  <update id="updateByPrimaryKeySelective" parameterType="po.Order" >
+    update dingdan
+    <set >
+      <if test="pileId != null" >
+        pile_id = #{pileId,jdbcType=CHAR},
+      </if>
+      <if test="orderPhone != null" >
+        order_phone = #{orderPhone,jdbcType=CHAR},
+      </if>
+      <if test="orderStart != null" >
+        order_start = #{orderStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderEnd != null" >
+        order_end = #{orderEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderMoney != null" >
+        order_money = #{orderMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="orderTime != null" >
+        order_time = #{orderTime,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=CHAR},
+      </if>
+      <if test="orderMethod != null" >
+        order_method = #{orderMethod,jdbcType=CHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="po.Order" >
+    update dingdan
+    set pile_id = #{pileId,jdbcType=CHAR},
+      order_phone = #{orderPhone,jdbcType=CHAR},
+      order_start = #{orderStart,jdbcType=TIMESTAMP},
+      order_end = #{orderEnd,jdbcType=TIMESTAMP},
+      order_money = #{orderMoney,jdbcType=DECIMAL},
+      order_time = #{orderTime,jdbcType=INTEGER},
+      order_status = #{orderStatus,jdbcType=CHAR},
+      order_method = #{orderMethod,jdbcType=CHAR}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>
