@@ -6,7 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ccb6807-db5e-4528-be12-971e4fb614fe" name="Default" comment="">
+    <list default="true" id="1ccb6807-db5e-4528-be12-971e4fb614fe" name="Default" comment="pilesystem">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -440,7 +440,7 @@
       <workItem from="1526259851709" duration="17627000" />
       <workItem from="1526287531731" duration="4459000" />
       <workItem from="1526306414098" duration="54127000" />
-      <workItem from="1526606190765" duration="446000" />
+      <workItem from="1526606190765" duration="1029000" />
     </task>
     <task id="LOCAL-00001" summary="pilesystem">
       <created>1526606352060</created>
@@ -449,11 +449,18 @@
       <option name="project" value="LOCAL" />
       <updated>1526606352060</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="pilesystem">
+      <created>1526606655416</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1526606655416</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="365350000" />
+    <option name="totallyTimeSpent" value="365933000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
