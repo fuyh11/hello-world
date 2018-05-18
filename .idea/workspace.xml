@@ -7,7 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ccb6807-db5e-4528-be12-971e4fb614fe" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -441,12 +440,20 @@
       <workItem from="1526259851709" duration="17627000" />
       <workItem from="1526287531731" duration="4459000" />
       <workItem from="1526306414098" duration="54127000" />
-      <workItem from="1526606190765" duration="119000" />
+      <workItem from="1526606190765" duration="446000" />
     </task>
+    <task id="LOCAL-00001" summary="pilesystem">
+      <created>1526606352060</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1526606352060</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="365023000" />
+    <option name="totallyTimeSpent" value="365350000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -533,6 +540,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="pilesystem" />
+    <option name="LAST_COMMIT_MESSAGE" value="pilesystem" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
