@@ -42,8 +42,6 @@ public class AddressController {
 	        }
 		 List<Address> address_list = addressService.getAllAddress(null);
 		 model.addAttribute("address_list",address_list);
-		 List<Address> address_list1 = addressService.getAllAddress(null);
-		 model.addAttribute("address_list",address_list1);
 		 return "address/addresslist";
 	 }
 	 
